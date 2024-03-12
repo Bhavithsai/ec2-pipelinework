@@ -31,10 +31,11 @@ import { StageFile } from '../lib/stage-file';
       }),
     });
     
-    const deploy = new StageFile(this, 'Deploy')
+    const deploy = new StageFile(this, 'Deploy',)
+    
        
     const deployStage = pipeline.addStage(deploy);
-     deployStage.addPre(new ManualApprovalStep('Manual approval before deploying'));
+    deployStage.addPre(new ManualApprovalStep('Manual approval before deploying'));
     // const testingStage = pipeline.addStage(new StageFile(this, 'Ec2test', {
     //   env: { account: '905418167610', region: 'ap-south-1'}
     // }));
