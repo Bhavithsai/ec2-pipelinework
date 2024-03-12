@@ -8,8 +8,8 @@ import { Duration, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
 export class Ec2WorkshopStack extends cdk.Stack {
-  constructor(scope: Construct, id: string,props?: cdk.StackProps) {
-    super(scope, id, props);
+  constructor(scope: Construct, id: string, stageName: string, props?: cdk.StackProps) {
+    super(scope,stageName, props );
 
     // Create SNS topic
     const notificationSNSTopic = new sns.Topic(this, 'SNSTopic', {
