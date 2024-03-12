@@ -31,15 +31,19 @@ import { StageFile } from '../lib/stage-file';
       }),
     });
     
-    const testingStage = pipeline.addStage(new StageFile(this, 'Ec2test', {
-      env: { account: '905418167610', region: 'ap-south-1'}
-    }));
+    const deploy = new StageFile(this, 'Deploy')
+       
+    const deployStage = pipeline.addStage(deploy);
+     deployStage.addPre(new ManualApprovalStep('Manual approval before deploying'));
+    // const testingStage = pipeline.addStage(new StageFile(this, 'Ec2test', {
+    //   env: { account: '905418167610', region: 'ap-south-1'}
+    // }));
     
-    testingStage.addPost(new ManualApprovalStep('Manual approval before production'));
+    // testingStage.addPost(new ManualApprovalStep('Manual approval before production'));
     
-    const prodStage = pipeline.addStage(new StageFile(this, 'Ec2prod', {
-      env: { account: '905418167610', region: 'ap-south-1'}
-    }));
+    // const prodStage = pipeline.addStage(new StageFile(this, 'Ec2prod', {
+    //   env: { account: '905418167610', region: 'ap-south-1'}
+    // }));
 
   }
 }
