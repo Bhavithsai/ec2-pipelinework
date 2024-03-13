@@ -4,7 +4,7 @@ import { Duration, Stack, StackProps } from 'aws-cdk-lib';
 import * as codepipeline from 'aws-cdk-lib/aws-codepipeline';
 import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions';
 import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
-import {CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
+import {CodePipeline, CodePipelineSource, ShellStep, CodeBuildStep} from 'aws-cdk-lib/pipelines';
 import { Construct } from 'constructs';
 import { StageFile } from '../lib/stage-file';
 // import { MainWorkshopStack } from './main-workshop-stack';

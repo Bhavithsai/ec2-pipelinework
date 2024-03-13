@@ -13,7 +13,7 @@ export class Ec2WorkshopStack extends cdk.Stack {
 
     // Create SNS topic
     const notificationSNSTopic = new sns.Topic(this, 'SNSTopic', {
-      topicName: 'ec2workshop-topic',
+      // topicName: 'ec2workshop-topic',
     });
     notificationSNSTopic.addSubscription(new snsSubscriptions.EmailSubscription('intothedark9381@gmail.com'));
 
