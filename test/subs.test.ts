@@ -20,7 +20,7 @@ test('Test SNS topic and email subscription', () => {
     Endpoint: 'intothedark9381@gmail.com',
     Protocol: 'email',
     TopicArn: {
-      'Ref': 'SNSTopicBCCC5DD8', // Updated to reference the correct logical ID of the SNS topic
+      'Ref': 'SNSTopicBCCC5DD8', 
     },
   });
 });
