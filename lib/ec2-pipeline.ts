@@ -31,21 +31,26 @@ import { StageFile } from '../lib/stage-file';
       }),
     });
     
+    const testingStage = pipeline.addStage(new StageFile(this, 'Test', {
+      env: { account: '905418167610', region: 'ap-northeast-1'}
+    }));
+    
+    testingStage.addPre(new CodeBuildStep('unit-tests', {
+      commands: [
+                'npm install -g aws-cdk',
+                'npm ci',
+                'npm test'
+      ]
+    }));
+    
+    testingStage.addPost(new ManualApprovalStep('Manual approval before production'));
+
     // const deploy = new StageFile(this, 'Deploy',)
     const deployStage = pipeline.addStage(new StageFile(this, 'Deploy', {
       env: { account: '905418167610', region: 'ap-south-1'}
     }));
        
-    deployStage.addPre(new ManualApprovalStep('Manual approval before deploying'));
-    // const testingStage = pipeline.addStage(new StageFile(this, 'Deploy', {
-    //   env: { account: '905418167610', region: 'ap-south-1'}
-    // }));
-    
-    // testingStage.addPost(new ManualApprovalStep('Manual approval before production'));
-    
-    // const prodStage = pipeline.addStage(new StageFile(this, 'Ec2prod', {
-    //   env: { account: '905418167610', region: 'ap-south-1'}
-    // }));
-
+    // deployStage.addPre(new ManualApprovalStep('Manual approval before deploying'));
+  
   }
 }
